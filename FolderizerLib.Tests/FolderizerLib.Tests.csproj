@@ -1,0 +1,112 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="nunit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FolderizerLib\FolderizerLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="FilesManipulationFolder\Ariely Bonatti - Alegria Vem Aí.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Ariely Bonatti - Forte Eu Sou.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Asaph Borba - Alegria de Ser Pai.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Asaph Borba - Filho Meu.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Asaph Borba - Melhor Presente.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Asaph Borba - Porta Aberta.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Grupo Logos - A Paz (Ao Vivo).mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Grupo Logos - Caminhos (Ao Vivo).mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Grupo Logos - Cortando o Céu.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Grupo Logos - Expressão de Louvor (Ao Vivo).mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Grupo Logos - Mudança.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Grupo Logos - Perfeita Paz.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Grupo Logos - Ponto de Partida (Ao Vivo).mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Grupo Logos - Portas Abertas (Ao Vivo).mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Grupo Logos - Semente e Fruto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Ariely Bonatti - Alegria Vem Aí.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Ariely Bonatti - Forte Eu Sou.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Asaph Borba - Alegria de Ser Pai.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Asaph Borba - Filho Meu.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Asaph Borba - Melhor Presente.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Asaph Borba - Porta Aberta.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Grupo Logos - A Paz %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Grupo Logos - Caminhos %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Grupo Logos - Cortando o Céu.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Grupo Logos - Expressão de Louvor %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Grupo Logos - Mudança.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Grupo Logos - Perfeita Paz.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Grupo Logos - Ponto de Partida %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Grupo Logos - Portas Abertas %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="oksodk\Grupo Logos - Semente e Fruto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
