@@ -9,18 +9,19 @@ namespace FolderizerLib.Tests.Core.TestData
     readonly struct TestPaths
     {
         private static readonly string _rootAudioTestFolder = Path.Combine(TestContext.CurrentContext.TestDirectory, "FilesManipulationFolder");
-        private static readonly string _unorganizedFolder = Path.Combine(_rootAudioTestFolder, "Folder to be organized");
-        private static readonly string _organizationFolder = Path.Combine(_rootAudioTestFolder, "Organization Folder");
+        private static readonly string _untouchedAudioFiles = Path.Combine(_rootAudioTestFolder, "Untouched Audio Files");
+        private static readonly string _unorganizedFolder = Path.Combine(_rootAudioTestFolder, "Unorganized Folder");
+        private static readonly string _organizationFolder = Path.Combine(_rootAudioTestFolder, "Destination Folder");
         private static readonly string _inexistentDirectoryPath = Path.Combine(_rootAudioTestFolder, "Inexistent folder");
         /// <summary>
         /// <para>Provides the path of the root testing environment. This folder contains audio file samples which can be copied to the BasePath folder, when <see cref="PopulateBasePath"/> is called, so that the tests can be run.</para>
         /// </summary>
-        public static string RootTestFolderPath
+        public static string UntouchedAudioFiles
         {
             get
             {
-                Directory.CreateDirectory(_rootAudioTestFolder);
-                return _rootAudioTestFolder;
+                Directory.CreateDirectory(_untouchedAudioFiles);
+                return _untouchedAudioFiles;
             }
         }
         /// <summary>

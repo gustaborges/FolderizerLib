@@ -57,6 +57,5 @@ namespace FolderizerLib.Tests.Testing.Organizers.Audio
 
             Assert.AreEqual(FileHandlingMethod.Copy, organizer.FileHandlingMethod);
         }
-
     }
 }

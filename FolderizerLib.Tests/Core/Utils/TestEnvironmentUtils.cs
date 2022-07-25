@@ -9,7 +9,7 @@ namespace FolderizerLib.Tests.Core.Utils
     {
         public static void PopulateBasePath()
         {
-            IEnumerable rootTestFolderFiles = Directory.EnumerateFiles(TestPaths.RootTestFolderPath);
+            IEnumerable rootTestFolderFiles = Directory.EnumerateFiles(TestPaths.UntouchedAudioFiles);
 
             foreach (string file in rootTestFolderFiles)
             {

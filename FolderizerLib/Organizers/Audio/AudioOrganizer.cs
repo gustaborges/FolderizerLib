@@ -54,7 +54,7 @@ namespace FolderizerLib.Organizers.Audio
             {
                 try
                 {
-                    this.OrganizeFileIntoNewLocation(file);
+                    this.OrganizeFileIntoNewLocation(file, FileHandlingMethod);
                 }
                 catch (Exception ex)
                 {
@@ -70,48 +70,65 @@ namespace FolderizerLib.Organizers.Audio
         }
 
 
-        private void OrganizeFileIntoNewLocation(string file)
+        private void OrganizeFileIntoNewLocation(string filePath, FileHandlingMethod handlingMethod)
         {
-            if (NotAudioFile(file))
+            if (NotAnAudioFile(filePath))
+            {
                 return;
-
-            string finalDirectoryPath = GenerateNewDirectoryPath(filePath: file, PathToRootDestinationDirectory);
-            string finalFilePath = Path.Combine(finalDirectoryPath, Path.GetFileName(file));
-
-            Directory.CreateDirectory(finalDirectoryPath);
-
-            if (this.FileHandlingMethod == FileHandlingMethod.Move)
-            {
-                File.Move(file, finalFilePath);
             }
-            else
-            {
-                File.Copy(file, finalFilePath);
-            }
+
+            string newDirectoryPath = GenerateNewDirectoryPathAccordingToDesiredHierarchy(filePath);
+            string newFilePath = GenerateNewFilePath(filePath, newDirectoryPath);
+
+            Directory.CreateDirectory(newDirectoryPath);
+
+            PerformOrganizationAccordingToHandlingMethod(filePath, newFilePath, handlingMethod);
         }
 
-        private string GenerateNewDirectoryPath(string filePath, string mountingPath)
+        private static void PerformOrganizationAccordingToHandlingMethod(string currentFilePath, string newFilePath, FileHandlingMethod handlingMethod)
         {
-            foreach (AudioTag tag in NewDirectoryHierarchy.Get())
+            switch (handlingMethod)
             {
-                mountingPath = Path.Combine(mountingPath, GetTagValueFromFile(tag, filePath));
+                case FileHandlingMethod.Move: File.Move(currentFilePath, newFilePath); break;
+                case FileHandlingMethod.Copy: File.Copy(currentFilePath, newFilePath); break;
+                default: throw new InvalidOperationException(handlingMethod + " handling method is not supported");
             }
-            return mountingPath;
         }
 
-        private string GetTagValueFromFile(AudioTag tag, string filePath)
+        private static string GenerateNewFilePath(string currentFilePath, string newDirectoryPath)
+        {
+            string fileName = Path.GetFileName(currentFilePath);
+            return Path.Combine(newDirectoryPath, fileName);
+        }
+
+        private string GenerateNewDirectoryPathAccordingToDesiredHierarchy(string filePath)
+        {
+            string newDirectoryPath = PathToRootDestinationDirectory;
+
+            foreach (AudioTag tag in NewDirectoryHierarchy.GetStructure())
+            {
+                string extractedTagValue = ExtractTagFromFile(tag, filePath);
+                newDirectoryPath = Path.Combine(newDirectoryPath, extractedTagValue);
+            }
+
+            return newDirectoryPath;
+        }
+
+        private string ExtractTagFromFile(AudioTag tag, string filePath)
         {
             TagLib.File file = TagLib.File.Create(filePath);
             string value;
 
             switch (tag)
             {
-                case AudioTag.Album: 
+                case AudioTag.Album:
                     value = file.Tag.Album;
                     break;
 
                 case AudioTag.Artist: 
-                    value = !String.IsNullOrWhiteSpace(file.Tag.JoinedAlbumArtists) ? file.Tag.JoinedAlbumArtists : file.Tag.JoinedPerformers;
+                    value = !String.IsNullOrWhiteSpace(file.Tag.JoinedAlbumArtists)
+                        ? file.Tag.JoinedAlbumArtists
+                        : file.Tag.JoinedPerformers;
                     break;
                 
                 case AudioTag.Year: 
@@ -123,14 +140,13 @@ namespace FolderizerLib.Organizers.Audio
                     break;
 
                 default:
-                    value = String.Empty;
-                    break;
+                    throw new InvalidOperationException("Extraction of  '" + tag + "' tag is not supported");
             }
 
             return String.IsNullOrWhiteSpace(value) ? $"Unknown {tag}" : value;
         }
 
-        private bool NotAudioFile(string filePath) => !AudioFormats.Extensions.Contains(Path.GetExtension(filePath));
+        private bool NotAnAudioFile(string filePath) => !AudioFormats.Extensions.Contains(Path.GetExtension(filePath));
     }
 
 }

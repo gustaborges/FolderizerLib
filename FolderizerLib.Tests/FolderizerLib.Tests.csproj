@@ -62,6 +62,51 @@
     <None Update="FilesManipulationFolder\Grupo Logos - Semente e Fruto.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Ariely Bonatti - Alegria Vem Aí.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Ariely Bonatti - Forte Eu Sou.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Asaph Borba - Alegria de Ser Pai.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Asaph Borba - Filho Meu.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Asaph Borba - Melhor Presente.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Asaph Borba - Porta Aberta.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Grupo Logos - A Paz %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Grupo Logos - Caminhos %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Grupo Logos - Cortando o Céu.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Grupo Logos - Expressão de Louvor %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Grupo Logos - Mudança.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Grupo Logos - Perfeita Paz.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Grupo Logos - Ponto de Partida %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Grupo Logos - Portas Abertas %28Ao Vivo%29.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesManipulationFolder\Untouched Audio Files\Grupo Logos - Semente e Fruto.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="oksodk\Ariely Bonatti - Alegria Vem Aí.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
