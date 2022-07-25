@@ -5,6 +5,7 @@ using FolderizerLib.Tests.Core.TestData;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
+using FolderizerLib.Results;
 
 namespace FolderizerLib.Tests.Testing.Organizers.Audio
 {
@@ -34,7 +35,7 @@ namespace FolderizerLib.Tests.Testing.Organizers.Audio
 
 
         [Test]
-        public void Run_WhenDestinationFolderIsNotSpecified_NewDirectoryStructureHasOneCriteria_ShouldOrganizeTheNewDirectoryStructureInBasePath()
+        public void Organize_WhenDestinationFolderIsNotSpecified_NewDirectoryStructureHasOneCriteria_ShouldOrganizeTheNewDirectoryStructureInBasePath()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _oneLevelDirectoryHierarchy);
             organizer.Organize();
@@ -43,7 +44,7 @@ namespace FolderizerLib.Tests.Testing.Organizers.Audio
         }
 
         [Test]
-        public void Run_WhenDestinationFolderIsNotSpecified_NewDirectoryStructureHasMoreThanOneCriteria_ShouldOrganizeTheNewDirectoryStructureInBasePath()
+        public void Organize_WhenDestinationFolderIsNotSpecified_NewDirectoryStructureHasMoreThanOneCriteria_ShouldOrganizeTheNewDirectoryStructureInBasePath()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _twoLevelDirectoryHierarchy);
             organizer.Organize();
@@ -52,40 +53,40 @@ namespace FolderizerLib.Tests.Testing.Organizers.Audio
         }
 
         [Test]
-        public void Run_WhenDestinationFolderIsValid_NewDirectoryStructureHasOneCriteria_ShouldOrganizeTheNewDirectoryStructureInTheSpecifiedDestinationFolder()
+        public void Organize_WhenDestinationFolderIsValid_NewDirectoryStructureHasOneCriteria_ShouldOrganizeTheNewDirectoryStructureInTheSpecifiedDestinationFolder()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _oneLevelDirectoryHierarchy);
-            organizer.PathToRootDestinationDirectory = TestPaths.OrganizationFolder;
+            organizer.PathToRootDestinationDirectory = TestPaths.DestinationFolder;
             organizer.Organize();
 
-            AssertDirectoryStructureArtist(TestPaths.OrganizationFolder);
+            AssertDirectoryStructureArtist(TestPaths.DestinationFolder);
         }
 
 
         [Test]
-        public void Run_WhenDestinationFolderIsValid_NewDirectoryStructureHasMoreThanOneCriteria_ShouldOrganizeTheNewDirectoryStructureInTheSpecifiedDirectory()
+        public void Organize_WhenDestinationFolderIsValid_NewDirectoryStructureHasMoreThanOneCriteria_ShouldOrganizeTheNewDirectoryStructureInTheSpecifiedDirectory()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _twoLevelDirectoryHierarchy);
-            organizer.PathToRootDestinationDirectory = TestPaths.OrganizationFolder;
+            organizer.PathToRootDestinationDirectory = TestPaths.DestinationFolder;
             organizer.Organize();
 
-            AssertDirectoryStructureArtistAlbum(TestPaths.OrganizationFolder);
+            AssertDirectoryStructureArtistAlbum(TestPaths.DestinationFolder);
         }
 
         [Test]
-        public void Run_WhenDestinationFolderIsInexistent_ShouldCreateTheFolderAndOrganize()
+        public void Organize_WhenDestinationFolderIsInexistent_ShouldCreateTheFolderAndOrganize()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _twoLevelDirectoryHierarchy);
-            organizer.PathToRootDestinationDirectory = TestPaths.OrganizationFolder;
+            organizer.PathToRootDestinationDirectory = TestPaths.DestinationFolder;
             TestEnvironmentUtils.DeleteMountingPath();
 
             organizer.Organize();
 
-            AssertDirectoryStructureArtistAlbum(TestPaths.OrganizationFolder);
+            AssertDirectoryStructureArtistAlbum(TestPaths.DestinationFolder);
         }
 
         [Test]
-        public void Run_WhenBasePathIsInvalid_ShouldThrowDirectoryNotFoundException()
+        public void Organize_WhenBasePathIsInvalid_ShouldThrowDirectoryNotFoundException()
         {
             var organizer = new AudioOrganizer(TestPaths.NotCreatedDirectory, _twoLevelDirectoryHierarchy);
 
@@ -94,35 +95,46 @@ namespace FolderizerLib.Tests.Testing.Organizers.Audio
 
 
         [Test]
-        public void Run_WhenFileHandlingMethodIsMove_ShouldMoveAndOrganizeTheFilesInTheNewLocation()
+        public void Organize_WhenFileHandlingMethodIsMove_ShouldMoveAndOrganizeTheFilesInTheNewLocation()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _twoLevelDirectoryHierarchy);
-            organizer.PathToRootDestinationDirectory = TestPaths.OrganizationFolder;
+            organizer.PathToRootDestinationDirectory = TestPaths.DestinationFolder;
             organizer.FileHandlingMethod = FileHandlingMethod.Move;
 
             organizer.Organize();
 
-            AssertDirectoryStructureYearAlbum(TestPaths.OrganizationFolder);
+            AssertDirectoryStructureArtistAlbum(TestPaths.DestinationFolder);
             AssertFilesHaveBeenMovedFromBasePath();
         }
 
         [Test]
-        public void Run_WhenExceptionOccursWhileOrganizingTheFiles_ShouldReturnExecutionResultWithFailureLogged()
+        public void Organize_WhenOrganizationIsSuccessful_ShouldReturnOrganizationResultWithNoFailure()
         {
-            //var fileWithForcedError = TestAudioFiles.Files[0];
-            //var fileWithForcedErrorPath = $"{folderizerAudio.BasePath}\\{fileWithForcedError.Name}{fileWithForcedError.Format}";
+            var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _twoLevelDirectoryHierarchy);
+            OrganizationResult organizationResult = organizer.Organize();
 
-            //using (var stream = File.OpenRead(fileWithForcedErrorPath))
-            //{
-            //    folderizerAudio.MountingPath = TestPaths.ValidMountingPath;
-            //    folderizerAudio.OperationMethod = OperationMethod.Move;
-            //    folderizerAudio.SetDesiredDirectoryStructure(AudioTag.Year, AudioTag.Album);
+            Assert.False(organizationResult.HasFailure);
+        }
 
-            //    ExecutionResult executionResult = folderizerAudio.Organize();
+        [Test]
+        public void Organize_WhenAnExceptionIsThrownWhenHandlingAnAudioFile_ThenOrganizationResultShouldContainTheFailure()
+        {
+            var lockedFile = Directory.EnumerateFiles(TestPaths.UnorganizedFolder).First();
+            var fileStream = new FileStream(lockedFile, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            
+            try
+            {
+                var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _twoLevelDirectoryHierarchy);
+                OrganizationResult organizationResult = organizer.Organize();
 
-            //    Assert.True(executionResult.Errors.Length > 0);
-            //    Assert.True(executionResult.Errors[0].FilePath.Equals(fileWithForcedErrorPath));
-            //}
+                Assert.AreEqual(1, organizationResult.Failures.Count);
+                Assert.AreEqual(lockedFile, organizationResult.Failures[0].File);
+                Assert.NotNull(organizationResult.Failures[0].Exception);
+            }
+            finally
+            {
+                fileStream.Close();
+            }
         }
 
         private void AssertFilesHaveBeenMovedFromBasePath()

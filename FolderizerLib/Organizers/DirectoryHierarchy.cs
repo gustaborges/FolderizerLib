@@ -9,10 +9,10 @@ namespace FolderizerLib.Organizers
 
         public T this[int i]
         {
-            get => Get()[i];
+            get => GetStructure()[i];
         }
 
-        public IReadOnlyList<T> Get()
+        public IReadOnlyList<T> GetStructure()
         {
             return _directoryHierarchy as IReadOnlyList<T>;
         }
@@ -26,9 +26,5 @@ namespace FolderizerLib.Organizers
 
             _directoryHierarchy.Add(item);
         }
-
-
-
-
     }
 }
