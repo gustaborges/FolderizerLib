@@ -56,10 +56,10 @@ namespace FolderizerLib.Tests.Testing.Organizers.Audio
         public void Organize_WhenDestinationFolderIsValid_NewDirectoryStructureHasOneCriteria_ShouldOrganizeTheNewDirectoryStructureInTheSpecifiedDestinationFolder()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _oneLevelDirectoryHierarchy);
-            organizer.PathToRootDestinationDirectory = TestPaths.OrganizationFolder;
+            organizer.PathToRootDestinationDirectory = TestPaths.DestinationFolder;
             organizer.Organize();
 
-            AssertDirectoryStructureArtist(TestPaths.OrganizationFolder);
+            AssertDirectoryStructureArtist(TestPaths.DestinationFolder);
         }
 
 
@@ -67,22 +67,22 @@ namespace FolderizerLib.Tests.Testing.Organizers.Audio
         public void Organize_WhenDestinationFolderIsValid_NewDirectoryStructureHasMoreThanOneCriteria_ShouldOrganizeTheNewDirectoryStructureInTheSpecifiedDirectory()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _twoLevelDirectoryHierarchy);
-            organizer.PathToRootDestinationDirectory = TestPaths.OrganizationFolder;
+            organizer.PathToRootDestinationDirectory = TestPaths.DestinationFolder;
             organizer.Organize();
 
-            AssertDirectoryStructureArtistAlbum(TestPaths.OrganizationFolder);
+            AssertDirectoryStructureArtistAlbum(TestPaths.DestinationFolder);
         }
 
         [Test]
         public void Organize_WhenDestinationFolderIsInexistent_ShouldCreateTheFolderAndOrganize()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _twoLevelDirectoryHierarchy);
-            organizer.PathToRootDestinationDirectory = TestPaths.OrganizationFolder;
+            organizer.PathToRootDestinationDirectory = TestPaths.DestinationFolder;
             TestEnvironmentUtils.DeleteMountingPath();
 
             organizer.Organize();
 
-            AssertDirectoryStructureArtistAlbum(TestPaths.OrganizationFolder);
+            AssertDirectoryStructureArtistAlbum(TestPaths.DestinationFolder);
         }
 
         [Test]
@@ -98,12 +98,12 @@ namespace FolderizerLib.Tests.Testing.Organizers.Audio
         public void Organize_WhenFileHandlingMethodIsMove_ShouldMoveAndOrganizeTheFilesInTheNewLocation()
         {
             var organizer = new AudioOrganizer(TestPaths.UnorganizedFolder, _twoLevelDirectoryHierarchy);
-            organizer.PathToRootDestinationDirectory = TestPaths.OrganizationFolder;
+            organizer.PathToRootDestinationDirectory = TestPaths.DestinationFolder;
             organizer.FileHandlingMethod = FileHandlingMethod.Move;
 
             organizer.Organize();
 
-            AssertDirectoryStructureArtistAlbum(TestPaths.OrganizationFolder);
+            AssertDirectoryStructureArtistAlbum(TestPaths.DestinationFolder);
             AssertFilesHaveBeenMovedFromBasePath();
         }
 

@@ -30,8 +30,8 @@ namespace FolderizerLib.Tests.Core.Utils
 
         public static void DeleteMountingPath()
         {
-            if (Directory.Exists(TestPaths.OrganizationFolder))
-                Directory.Delete(TestPaths.OrganizationFolder, true);
+            if (Directory.Exists(TestPaths.DestinationFolder))
+                Directory.Delete(TestPaths.DestinationFolder, true);
         }
     }
 }

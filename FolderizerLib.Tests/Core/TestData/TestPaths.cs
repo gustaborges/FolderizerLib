@@ -8,59 +8,48 @@ namespace FolderizerLib.Tests.Core.TestData
     /// </summary>
     readonly struct TestPaths
     {
-        private static readonly string _rootAudioTestFolder = Path.Combine(TestContext.CurrentContext.TestDirectory, "FilesManipulationFolder");
-        private static readonly string _untouchedAudioFiles = Path.Combine(_rootAudioTestFolder, "Untouched Audio Files");
-        private static readonly string _unorganizedFolder = Path.Combine(_rootAudioTestFolder, "Unorganized Folder");
-        private static readonly string _organizationFolder = Path.Combine(_rootAudioTestFolder, "Destination Folder");
-        private static readonly string _inexistentDirectoryPath = Path.Combine(_rootAudioTestFolder, "Inexistent folder");
-        /// <summary>
-        /// <para>Provides the path of the root testing environment. This folder contains audio file samples which can be copied to the BasePath folder, when <see cref="PopulateBasePath"/> is called, so that the tests can be run.</para>
-        /// </summary>
+        private static readonly string _rootFileManipulationDirPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "FilesManipulationFolder");
+        private static readonly string _untouchedAudioFilesDirPath = Path.Combine(_rootFileManipulationDirPath, "Untouched Audio Files");
+        private static readonly string _unorganizedDirPath = Path.Combine(_rootFileManipulationDirPath, "Unorganized Folder");
+        private static readonly string _destinationDirPath = Path.Combine(_rootFileManipulationDirPath, "Destination Folder");
+        private static readonly string _inexistentDirPath = Path.Combine(_rootFileManipulationDirPath, "Inexistent Folder");
+
         public static string UntouchedAudioFiles
         {
             get
             {
-                Directory.CreateDirectory(_untouchedAudioFiles);
-                return _untouchedAudioFiles;
+                Directory.CreateDirectory(_untouchedAudioFilesDirPath);
+                return _untouchedAudioFilesDirPath;
             }
         }
-        /// <summary>
-        /// <para>Provides the path of an existing directory. In runtime, the getter creates the directory if needed, so that it's always valid.</para>
-        /// </summary>
+
         public static string UnorganizedFolder
         {
             get
             {
-                Directory.CreateDirectory(_unorganizedFolder);
-                return _unorganizedFolder;
+                Directory.CreateDirectory(_unorganizedDirPath);
+                return _unorganizedDirPath;
             }
         }
 
-        /// <summary>
-        /// <para>Provides the path of an existing directory. In runtime, the getter creates the directory if needed, so that it's always valid.</para>
-        /// <para>By default: </para>
-        /// </summary>
-        public static string OrganizationFolder
+        public static string DestinationFolder
         {
             get
             {
-                Directory.CreateDirectory(_organizationFolder);
-                return _organizationFolder;
+                Directory.CreateDirectory(_destinationDirPath);
+                return _destinationDirPath;
             }
         }
 
-        /// <summary>
-        /// <para>Provides the path of an inexistent directory.</para>
-        /// </summary>
         public static string NotCreatedDirectory
         {
             get
             {
-                if (Directory.Exists(_inexistentDirectoryPath))
+                if (Directory.Exists(_inexistentDirPath))
                 {
-                    Directory.Delete(_inexistentDirectoryPath, true);
+                    Directory.Delete(_inexistentDirPath, true);
                 }
-                return _inexistentDirectoryPath;
+                return _inexistentDirPath;
             }
         }
 

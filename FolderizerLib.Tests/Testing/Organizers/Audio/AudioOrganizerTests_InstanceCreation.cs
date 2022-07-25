@@ -44,10 +44,10 @@ namespace FolderizerLib.Tests.Testing.Organizers.Audio
         {
             AudioOrganizer organizer = new(TestPaths.UnorganizedFolder, validHierarchy)
             {
-                PathToRootDestinationDirectory = TestPaths.OrganizationFolder
+                PathToRootDestinationDirectory = TestPaths.DestinationFolder
             };
 
-            Assert.AreEqual(TestPaths.OrganizationFolder, organizer.PathToRootDestinationDirectory);
+            Assert.AreEqual(TestPaths.DestinationFolder, organizer.PathToRootDestinationDirectory);
         }
 
         [Test]
